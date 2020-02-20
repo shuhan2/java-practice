@@ -59,7 +59,7 @@ public class CollectionTest {
 
     // TODO: please modify the following code to pass the test
     // <--start
-    final List<String> expected = Arrays.asList("I", "Don't", "Know");
+    final List<String> expected = Arrays.asList("Amy", "Bob", "Carl");
     // --end-->
 
     assertIterableEquals(expected, staff);
