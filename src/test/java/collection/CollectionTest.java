@@ -19,13 +19,7 @@ public class CollectionTest {
     collection.add("!");
     Iterator<String> iterator = collection.iterator();
 
-    // TODO: you could modify the expected
-
-    // <--start
-    List<String> expected = null;
-    // --end-->
-
-    assertIterableEquals(expected, createList(iterator));
+    assertIterableEquals(Arrays.asList("Hello", "World", "!"), createList(iterator));
   }
 
   @SuppressWarnings({"unused", "UnnecessaryLocalVariable"})
@@ -35,9 +29,7 @@ public class CollectionTest {
     // TODO: you could ONLY use `Iterator.hasNext` and `Iterator.next` API to copy items to a `List`. No `for` is
     // allowed.
     // <--start
-    while (iterator.hasNext()) {
-      list.add(iterator.next());
-    }
+
     // --end-->
 
     return list;
@@ -65,7 +57,7 @@ public class CollectionTest {
 
     // TODO: please modify the following code to pass the test
     // <--start
-    final List<String> expected = null;
+    final List<String> expected = Arrays.asList("I", "Don't", "Know");
     // --end-->
 
     assertIterableEquals(expected, staff);
@@ -97,7 +89,7 @@ public class CollectionTest {
 
     // TODO: please modify the following code to pass the test
     // <--start
-    final List<Integer> expected = null;
+    final List<Integer> expected = Arrays.asList(0, 0, 0);
     // --end-->
 
     assertIterableEquals(expected, integers);

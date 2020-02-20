@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DistinctIterable<T> implements Iterable<T> {
     private Iterable<T> iterable;
@@ -37,12 +38,12 @@ class DistinctIterator<E> implements Iterator<E> {
 
     @Override
     public boolean hasNext() {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
     public E next() {
-        return null;
+        throw new NotImplementedException();
     }
 
     // --end->
