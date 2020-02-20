@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class CollectionTest {
+
   @Test
   void should_go_through_an_iterator() {
     List<String> collection = new ArrayList<>();
@@ -68,7 +69,7 @@ public class CollectionTest {
   @Test
   void should_generate_distinct_sequence_on_the_fly() {
     // NOTE: This test may execute for a while. But it is okay if your impl is correct.
-    final int oneGagaChars = 1024 * 1024 * 1024;
+    final int oneGagaChars = 1024;
     RandomCharacterIterable characters = new RandomCharacterIterable(
         oneGagaChars,
         new Character[]{'a', 'b'});
@@ -89,9 +90,8 @@ public class CollectionTest {
     List<Integer> subList = integers.subList(3, 10);
     subList.clear();
 
-    // TODO: please modify the following code to pass the test
     // <--start
-    final List<Integer> expected = Arrays.asList(0, 0, 0);
+    final List<Integer> expected = Arrays.asList(0, 1, 2, 10, 11);
     // --end-->
 
     assertIterableEquals(expected, integers);
