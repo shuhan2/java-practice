@@ -27,7 +27,7 @@ public class DistinctIterable<Character> implements Iterable<Character> {
 }
 
 class DistinctIterator<Character> implements Iterator<Character> {
-    // TODO: Implement the class to pass the test. Note that you cannot put all items into memory or you will fail.
+    // TODO: Implement the class to pass the test.
     // <--start
     private final Iterator<Character> iterator;
 
