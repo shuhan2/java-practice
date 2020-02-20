@@ -24,25 +24,23 @@ class SequenceIterator implements Iterator<Integer> {
     private final Integer end;
 
     SequenceIterator(Integer start, Integer end) {
-        // TODO: please implements the following code to pass the test
         // <--start
-        throw new NotImplementedException();
+        this.current = start;
+        this.end = end;
         // --end-->
     }
 
     @Override
     public boolean hasNext() {
-        // TODO: please implements the following code to pass the test
         // <--start
-        throw new NotImplementedException();
+        return current < end;
         // --end-->
     }
 
     @Override
     public Integer next() {
-        // TODO: please implements the following code to pass the test
         // <--start
-        throw new NotImplementedException();
+        return current++;
         // --end-->
     }
 }
