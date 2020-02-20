@@ -30,7 +30,9 @@ class DistinctIterator<Character> implements Iterator<Character> {
     // TODO: Implement the class to pass the test. Note that you cannot put all items into memory or you will fail.
     // <--start
     private final Iterator<Character> iterator;
-
+    private Set<Character> set =  new HashSet<>();
+    private Character element;
+    private Character distinctElement;
 
     DistinctIterator(Iterator<Character> iterator) {
         this.iterator = iterator;
@@ -38,13 +40,19 @@ class DistinctIterator<Character> implements Iterator<Character> {
 
     @Override
     public boolean hasNext() {
-        throw new NotImplementedException();
+        while (iterator.hasNext()) {
+          element =  iterator.next();
+          if (set.add(element)) {
+            distinctElement = element;
+            return true;
+          }
+        }
+        return false;
     }
 
     @Override
     public Character next() {
-        throw new NotImplementedException();
+       return distinctElement;
     }
-
     // --end->
 }

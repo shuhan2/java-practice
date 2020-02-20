@@ -16,6 +16,7 @@ public class RandomCharacterIterable implements Iterable<Character> {
 
     @Override
     public Iterator<Character> iterator() {
+
         return new RandomCharacterIterator();
     }
 
@@ -25,6 +26,7 @@ public class RandomCharacterIterable implements Iterable<Character> {
 
         @Override
         public boolean hasNext() {
+
             return currentIndex < size;
         }
 
