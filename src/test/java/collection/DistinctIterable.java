@@ -5,44 +5,45 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class DistinctIterable<T> implements Iterable<T> {
-    private Iterable<T> iterable;
+public class DistinctIterable<Character> implements Iterable<Character> {
+    private Iterable<Character> iterable;
 
-    public DistinctIterable(Iterable<T> iterable) {
+    public DistinctIterable(Iterable<Character> iterable) {
         this.iterable = iterable;
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<Character> iterator() {
         return new DistinctIterator<>(iterable.iterator());
     }
 
-    public List<T> toList() {
-        ArrayList<T> result = new ArrayList<>();
+    public List<Character> toList() {
+        List<Character> result = new ArrayList<>();
         this.forEach(result::add);
         return result;
     }
 }
 
-class DistinctIterator<E> implements Iterator<E> {
+class DistinctIterator<Character> implements Iterator<Character> {
     // TODO: Implement the class to pass the test. Note that you cannot put all items into memory or you will fail.
     // <--start
-    private final Iterator<E> iterator;
+    private final Iterator<Character> iterator;
 
 
-    DistinctIterator(Iterator<E> iterator) {
+    DistinctIterator(Iterator<Character> iterator) {
         this.iterator = iterator;
     }
 
     @Override
     public boolean hasNext() {
-        return false;
+        throw new NotImplementedException();
     }
 
     @Override
-    public E next() {
-        return null;
+    public Character next() {
+        throw new NotImplementedException();
     }
 
     // --end->
