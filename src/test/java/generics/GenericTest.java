@@ -15,18 +15,18 @@ class GenericTest {
     final String[] words = {"Hello", "Good", "Morning"};
 
     // TODO: please call getMiddle method for string
-    final String middle = null;
+    final String middleString = null;
 
-    assertEquals("Good", middle);
+    assertEquals("Good", middleString);
   }
 
   @Test
   void should_specify_a_type_restriction_on_typed_parameters() {
     int minimumInteger = min(new Integer[]{1, 2, 3});
-    double minimumReal = min(new Double[]{1.2, 2.2, -1d});
+    double minimumDouble = min(new Double[]{1.2, 2.2, -1d});
 
     assertEquals(1, minimumInteger);
-    assertEquals(-1d, minimumReal, 1.0E-05);
+    assertEquals(-1d, minimumDouble, 1.0E-15);
   }
 
   @Test
@@ -46,17 +46,17 @@ class GenericTest {
     Pair rawPair = managerPair;
     rawPair.setFirst(new Employee());
 
-    boolean willThrow = false;
+    boolean isThrow = false;
     try {
       Manager first = managerPair.getFirst();
     } catch (ClassCastException error) {
-      willThrow = true;
+      isThrow = true;
     }
 
     // TODO: please modify the following code to pass the test
     final Optional<Boolean> expected = Optional.empty();
 
-    assertEquals(expected.get(), willThrow);
+    assertEquals(expected.get(), isThrow);
   }
 
   @Test
@@ -69,6 +69,9 @@ class GenericTest {
     assertEquals("Hello", pair.getSecond());
   }
 
+  /*
+  This test need not to pass. Only need to consider the reason for it.
+   */
   @Disabled
   @Test
   void should_consider_the_inconvertible_type() {
@@ -86,15 +89,12 @@ class GenericTest {
 
   // TODO: please implement the following code to pass the test. It should be generic after all.
   // The method should only accept `Number` and the number should implement `Comparable<T>`
-  // <--start
+  // Can use compareTo method to compare
   private static <T extends Number & Comparable<T>> T min(T[] values) {
     throw new NotImplementedException();
   }
-  // --end-->
 
   // TODO: please implement following method to pass the test. But you cannot change the signature
-  // <--start
-  @SuppressWarnings("unused")
   private static void swap(Pair<?> pair) {
     throw new NotImplementedException();
   }
@@ -102,3 +102,4 @@ class GenericTest {
   // TODO: You can add additional method within the range if you like
 
 }
+
