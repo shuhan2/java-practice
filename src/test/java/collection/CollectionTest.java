@@ -68,13 +68,17 @@ public class CollectionTest {
 
   @Test
   void should_generate_distinct_sequence_on_the_fly() {
-    // NOTE: This test may execute for a while. But it is okay if your impl is correct.
-    final int oneGagaChars = 1024 * 1024 * 1024;
+    // NOTE: This test may execute for a while. But it is okay if your implementation is correct.
+    final int size = 1024 * 1024 * 1024;
+
+    //The element size in characters is 1024 * 1024 * 1024
     RandomCharacterIterable characters = new RandomCharacterIterable(
-        oneGagaChars,
+        size,
         new Character[]{'a', 'b'});
 
+    //Expect the distinct only contains one 'a' and one 'b'.
     List<Character> distinct = new DistinctIterable<>(characters).toList();
+    //Make the order of 'a' and 'b' is correct
     distinct.sort(Character::compareTo);
 
     assertIterableEquals(Arrays.asList('a', 'b'), distinct);
