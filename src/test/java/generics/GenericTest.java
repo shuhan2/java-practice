@@ -15,7 +15,7 @@ class GenericTest {
     final String[] words = {"Hello", "Good", "Morning"};
 
     // TODO: please call getMiddle method for string
-    final String middle = null;
+    final String middle = getMiddle(words);
 
     assertEquals("Good", middle);
   }
@@ -35,7 +35,7 @@ class GenericTest {
     KeyValuePair<Integer, String> pairWithDifferentTypeParameter = new KeyValuePair<>(2, "name");
 
     // TODO: please modify the code to pass the test
-    final Optional<Boolean> expected = Optional.empty();
+    final Optional<Boolean> expected = Optional.of(true);
 
     assertEquals(expected.get(), pair.getClass().equals(pairWithDifferentTypeParameter.getClass()));
   }
@@ -54,7 +54,7 @@ class GenericTest {
     }
 
     // TODO: please modify the following code to pass the test
-    final Optional<Boolean> expected = Optional.empty();
+    final Optional<Boolean> expected = Optional.of(true);
 
     assertEquals(expected.get(), willThrow);
   }
@@ -86,19 +86,30 @@ class GenericTest {
 
   // TODO: please implement the following code to pass the test. It should be generic after all.
   // The method should only accept `Number` and the number should implement `Comparable<T>`
-  // <--start
   private static <T extends Number & Comparable<T>> T min(T[] values) {
-    throw new NotImplementedException();
+    if (values == null || values.length == 0) {
+      return null;
+    }
+    T minNumber = values[0];
+    for (T number: values) {
+      if (number.compareTo(minNumber) < 0) {
+        minNumber = number;
+      }
+    }
+    return minNumber;
   }
-  // --end-->
+
 
   // TODO: please implement following method to pass the test. But you cannot change the signature
-  // <--start
-  @SuppressWarnings("unused")
   private static void swap(Pair<?> pair) {
-    throw new NotImplementedException();
+    helper(pair);
   }
 
   // TODO: You can add additional method within the range if you like
+  private static<T> void helper(Pair<T> pair) {
+    T temp = pair.getFirst();
+    pair.setFirst(pair.getSecond());
+    pair.setSecond(temp);
+  }
 
 }
