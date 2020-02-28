@@ -99,36 +99,6 @@ public class CollectionTest {
     assertIterableEquals(expected, integers);
   }
 
-  @Test
-  void name1() {
-    List<Integer> integers = new ArrayList<>();
-    for (int i = 0; i < 3; i++) {
-      integers.add(i);
-    }
-
-    List<Integer> subList = integers.subList(1, 2);
-    integers.remove(0);
-
-   subList.get(0);
-  }
-
-  @Test
-  void name() {
-    List<Integer> integers = new ArrayList<>();
-    for (int i = 0; i < 3; i++) {
-      integers.add(i);
-    }
-
-    Iterator<Integer> iterator = integers.iterator();
-    while (iterator.hasNext()) {
-      Integer next = iterator.next();
-      System.out.println(next);
-      if (next == 2) {
-        integers.remove(1);
-      }
-    }
-
-  }
 }
 
 /*
