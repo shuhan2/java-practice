@@ -1,9 +1,6 @@
 package io;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TempDirectory.class)
 public class IOTest {
+
   @Test
   void should_read_write_file_from_file_stream(@TempDirectory.TempDir Path dir) throws Exception {
     final String message = "Hello world!" + System.lineSeparator();
@@ -26,20 +24,20 @@ public class IOTest {
     assertEquals(message, readAllText(filePath, StandardCharsets.UTF_8));
   }
 
-  @SuppressWarnings("SameParameterValue")
   private static void writeAllText(String message, Path filePath, Charset charset) throws IOException {
-    // TODO: please implement the method to writer text to file using `PrintWriter`.
-    //Use try-with-resources Statement
-
+    try (PrintWriter printWriter = new PrintWriter(filePath.toString(), charset.name())) {
+      printWriter.append(message);
+    }
 
   }
 
   private static String readAllText(Path path, Charset charset) throws IOException {
-    // TODO: please implement the method to read text from file using `Files` helper methods.
-    //Use try-with-resources Statement
 
-    return null;
-    // --end-->
+    StringBuilder builder = new StringBuilder();
+    try (Stream<String> list = Files.lines(path, charset)) {
+      list.forEach(string -> builder.append(string).append(System.lineSeparator()));
+    }
+    return builder.toString();
   }
 
   @Test
@@ -49,14 +47,18 @@ public class IOTest {
     final int firstValue = 2018;
     final double pi = 3.14;
 
-    // TODO: please write `firstValue` and `pi` to `filePath`
-    //Use try-with-resources Statement
+    try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(filePath.toString()))) {
+      writer.writeInt(firstValue);
+      writer.writeDouble(pi);
+    }
 
-    int actualFirstValue = 0;
-    double actualPi = 0;
+    int actualFirstValue;
+    double actualPi;
 
-    // TODO: please read `actualFirstValue` and `actualPi` from `filePath`
-    //Use try-with-resources Statement
+    try (DataInputStream reader = new DataInputStream(new FileInputStream(filePath.toString()))) {
+      actualFirstValue = reader.readInt();
+      actualPi = reader.readDouble();
+    }
 
     assertEquals(firstValue, actualFirstValue);
     assertEquals(pi, actualPi);
