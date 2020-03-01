@@ -15,7 +15,8 @@ public class Sequence implements Iterable<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
-        return new SequenceIterator(start, end);
+
+      return new SequenceIterator(start, end);
     }
 }
 
