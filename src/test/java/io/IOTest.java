@@ -1,9 +1,6 @@
 package io;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,20 +23,19 @@ public class IOTest {
     assertEquals(message, readAllText(filePath, StandardCharsets.UTF_8));
   }
 
-  @SuppressWarnings("SameParameterValue")
   private static void writeAllText(String message, Path filePath, Charset charset) throws IOException {
     // TODO: please implement the method to writer text to file using `PrintWriter`.
-    //Use try-with-resources Statement
+    // Use try-with-resources Statement
 
 
   }
 
   private static String readAllText(Path path, Charset charset) throws IOException {
-    // TODO: please implement the method to read text from file using `Files` helper methods.
-    //Use try-with-resources Statement
-
-    return null;
-    // --end-->
+    StringBuilder builder = new StringBuilder();
+    try (Stream<String> list = Files.lines(path, charset)) {
+      list.forEach(string -> builder.append(string).append(System.lineSeparator()));
+    }
+    return builder.toString();
   }
 
   @Test
