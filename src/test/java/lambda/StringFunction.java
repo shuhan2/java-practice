@@ -1,6 +1,6 @@
 package lambda;
 
-public interface StringFunc {
+public interface StringFunction {
     String getString();
 }
 
