@@ -1,6 +1,6 @@
 package lambda;
 
-import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +22,7 @@ public class LambdaTest {
 
   @Test
   public void should_be_able_to_bind_to_instance_method() {
-    // TODO: please bind lambda to instanceMethod.
+    // TODO: please bind lambda to instanceMethod(use method reference).
     // <--start
     StringFunc lambda = null;
     // --end-->
@@ -32,7 +32,7 @@ public class LambdaTest {
 
   @Test
   public void should_be_able_to_bind_to_static_method() {
-    // TODO: please bind lambda to staticMethod
+    // TODO: please bind lambda to staticMethod(use method reference)
     // <--start
     StringFunc lambda = null;
     // --end-->
@@ -42,12 +42,12 @@ public class LambdaTest {
 
   @Test
   public void should_bind_to_constructor() {
-    // TODO: please bind lambda to constructor of ArrayList<Integer>
+    // TODO: please bind lambda to constructor of List<Integer>(use method reference)
     // <--start
-    GenericFunc<ArrayList<Integer>> lambda = null;
+    GenericFunc<List<Integer>> lambda = null;
     // --end-->
 
-    ArrayList<Integer> value = lambda.getValue();
+    List<Integer> value = lambda.getValue();
 
     assertEquals(0, value.size());
   }
