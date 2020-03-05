@@ -99,7 +99,7 @@ class StreamingTest {
   void should_be_able_to_map_stream() {
     Stream<String> wordStream = Stream.of("a", "quick", "brown", "fox", "jumps", "over");
 
-    // TODO: please write code to make the work all upper case
+    // TODO: please write code to make the word all upper case
     // <--start
     try (Stream<String> filtered = null)
     // --end-->
