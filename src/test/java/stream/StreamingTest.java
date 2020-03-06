@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
-class StreamingTest1 {
+class StreamingTest {
 
   @Test
   void should_be_able_to_turn_collection_into_stream() {
@@ -136,7 +136,7 @@ class StreamingTest1 {
   void should_flatten_stream_of_streams() {
     Stream<Stream<Character>> nameStream = Stream
         .of("Naruto", "Kisuke", "Tomoya")
-        .map(StreamingTest1::letters);
+        .map(StreamingTest::letters);
 
     // TODO: please modify the following code to pass the test
     // <--start
