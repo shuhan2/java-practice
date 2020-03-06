@@ -19,7 +19,7 @@ public class ExceptionTest {
     }
 
     // TODO: please modify the following code to pass the test
-    final Optional<Boolean> expected = Optional.empty();
+    final Optional<Boolean> expected = Optional.of(true);
 
     assertEquals(expected.get(), closableStateReference.isClosed());
   }
@@ -38,7 +38,7 @@ public class ExceptionTest {
 
     // TODO: please modify the following code to pass the test
     // <--start
-    final String[] expected = null;
+    final String[] expected = {"ClosableWithException.close","ClosableWithoutException.close"};
     // --end-->
 
     assertArrayEquals(
