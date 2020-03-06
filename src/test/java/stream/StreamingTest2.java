@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
@@ -18,12 +20,44 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class StreamingTest2 {
 
   @Test
+  void should_calculate_sum_using_reduce() {
+    List<Integer> numbers = new ArrayList<>();
+    Stream
+        .iterate(1, i -> i + 1)
+        .limit(100)
+        .forEach(numbers::add);
+
+    // TODO: please modify the following code to pass the test
+    // <--start
+    Optional<Integer> reduced = null;
+    // --end-->
+
+    //noinspection ConstantConditions
+    assertEquals(5050, reduced.get().intValue());
+  }
+
+  @Test
+  void should_calculate_total_character_lengths() {
+    List<String> words = Arrays.asList("The", "future", "is", "ours");
+
+    // TODO: please calculate the total number of characters using `reduce`.
+    // <--start
+    Integer total = null;
+    // --end-->
+
+    assertEquals(15, total.intValue());
+  }
+
+  @Test
   void should_collect_result() {
     Stream<String> stream = Stream.of("Hello", "What", "is", "your", "name");
 
     // TODO: please implement toList collector using `stream.collect`. You cannot use existing `toList` collector.
+    // can use collect(Supplier<R> supplier,
+    //                  BiConsumer<R, ? super T> accumulator,
+    //                  BiConsumer<R, R> combiner) method
     // <--start
-    List<String> list = null;
+    List<String> list = stream.collect(Collectors.toList());
     // --end-->
 
     assertEquals(ArrayList.class, list.getClass());
@@ -33,7 +67,6 @@ public class StreamingTest2 {
     );
   }
 
-  @SuppressWarnings({"ConstantConditions", "unused"})
   @Test
   void should_collect_to_map() {
     Stream<KeyValuePair<String, Integer>> stream = Stream.of(
@@ -54,7 +87,6 @@ public class StreamingTest2 {
     assertEquals(2014, map.get("Bob").intValue());
   }
 
-  @SuppressWarnings({"ConstantConditions", "unused"})
   @Test
   void should_collect_to_group() {
     Stream<KeyValuePair<String, Integer>> stream = Stream.of(
@@ -73,7 +105,6 @@ public class StreamingTest2 {
     assertIterableEquals(Collections.singletonList(2014), map.get("Bob"));
   }
 
-  @SuppressWarnings("ConstantConditions")
   @Test
   void should_collect_to_group_continued() {
     Stream<KeyValuePair<String, Integer>> stream = Stream.of(
@@ -112,7 +143,6 @@ public class StreamingTest2 {
     assertEquals(1, map.get("Bob").longValue());
   }
 
-  @SuppressWarnings({"ConstantConditions", "unused"})
   @Test
   void should_calculate_sum_of_each_group() {
     Stream<KeyValuePair<String, Integer>> stream = Stream.of(
@@ -130,37 +160,6 @@ public class StreamingTest2 {
     assertEquals(2, map.size());
     assertEquals(4035, map.get("Harry").intValue());
     assertEquals(2014, map.get("Bob").intValue());
-  }
-
-  @SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "OptionalAssignedToNull"})
-  @Test
-  void should_calculate_sum_using_reduce() {
-    List<Integer> numbers = new ArrayList<>();
-    Stream
-        .iterate(1, i -> i + 1)
-        .limit(100)
-        .forEach(numbers::add);
-
-    // TODO: please modify the following code to pass the test
-    // <--start
-    Optional<Integer> reduced = null;
-    // --end-->
-
-    //noinspection ConstantConditions
-    assertEquals(5050, reduced.get().intValue());
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test
-  void should_calculate_total_character_lengths() {
-    List<String> words = Arrays.asList("The", "future", "is", "ours");
-
-    // TODO: please calculate the total number of characters using `reduce`.
-    // <--start
-    Integer total = null;
-    // --end-->
-
-    assertEquals(15, total.intValue());
   }
 
 }
