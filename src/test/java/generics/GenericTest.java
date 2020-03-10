@@ -4,7 +4,6 @@ package generics;
 import java.util.Optional;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

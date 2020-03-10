@@ -1,6 +1,8 @@
 package reflection;
 
-import generics.Employee;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -9,51 +11,45 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReflectionTest {
   @Test
   void should_be_able_to_get_class_object() {
-    Employee employee = new Employee();
-    Class<? extends Employee> employeeClass = employee.getClass();
+    EmployeeR employeeR = new EmployeeR();
+    Class<? extends EmployeeR> employeeClass = employeeR.getClass();
 
-    // TODO: please modify the following code to pass the test
-    // <--start
-    final Class<? extends Employee> expected = null;
-    // --end-->
+    final Class<? extends EmployeeR> expected = EmployeeR.class;
 
     assertEquals(expected, employeeClass);
   }
 
   @Test
   void should_be_able_to_get_full_qualified_name() {
-    Employee employee = new Employee();
-    Class<? extends Employee> employeeClass = employee.getClass();
+    EmployeeR employeeR = new EmployeeR();
+    Class<? extends EmployeeR> employeeClass = employeeR.getClass();
 
-    // TODO: please modify the following code to pass the test
-    // <--start
-    final String expected = null;
-    // --end-->
+    final String expected = "reflection.EmployeeR";
 
     assertEquals(expected, employeeClass.getName());
   }
 
   @Test
   void should_be_able_to_instantiate_types_at_runtime() throws Exception {
-    Class<?> theClass = Class.forName("com.cultivation.javaBasic.util.Employee");
+    Class<?> theClass = Class.forName("reflection.EmployeeR");
 
-    // TODO: please created an instance described by `theClass`
-    // <--start
-    Employee instance = null;
-    // --end-->
 
-    assertEquals("Employee", instance.getTitle());
+    EmployeeR instance = (EmployeeR) theClass.newInstance();
+
+    assertEquals("EmployeeTitle", instance.getTitle());
   }
 
-  @SuppressWarnings({"ConstantConditions", "unused"})
   @Test
   void should_be_able_to_print_all_static_methods_of_double() {
     Class<Double> doubleClass = Double.class;
 
-    // TODO: please get all public static declared methods of Double. Sorted in an ascending order
-    // <--start
-    String[] publicStaticMethods = null;
-    // --end-->
+    String[] publicStaticMethods = Arrays.stream(doubleClass.getDeclaredMethods())
+        .filter(m -> {
+          int modifiers = m.getModifiers();
+          return Modifier.isStatic(modifiers) && Modifier.isPublic(modifiers); })
+        .map(Method::getName)
+        .sorted()
+        .toArray(String[]::new);;
 
     final String[] expected = {
         "compare", "doubleToLongBits", "doubleToRawLongBits", "hashCode",
@@ -66,37 +62,34 @@ public class ReflectionTest {
   }
 
   @Test
-  void should_be_able_to_evaluate_object_field_values_at_runtime() {
-    Object employee = new Employee();
+  void should_be_able_to_evaluate_object_field_values_at_runtime() throws Exception {
+    Object employee = new EmployeeR();
 
-    // TODO: please get the value of `getTitle` method using reflection. No casting to Employee is allowed.
-    // <--start
-    Object result = null;
-    // --end-->
 
-    assertEquals("Employee", result);
+    Class<?> theClass = employee.getClass();
+    Object result = theClass.getMethod("getTitle").invoke(employee);
+
+    assertEquals("EmployeeTitle", result);
   }
 
   @Test
   void should_be_able_to_get_the_item_class_of_the_array() {
-    Object employees = new Employee[0];
+    Object employees = new EmployeeR[0];
 
-    // TODO: please get the class of array item `employees`
-    // <--start
-    Class<?> itemClass = employees.getClass();
-    // --end-->
+    Class<?> itemClass = employees.getClass().getComponentType();
 
-    assertEquals(Employee.class, itemClass);
+    assertEquals(EmployeeR.class, itemClass);
   }
 
   @Test
   void should_be_able_to_get_the_methods_who_contains_MyAnnotation_annotation() {
     Class<MethodWithAnnotation> theClass = MethodWithAnnotation.class;
 
-    // TODO: please get the methods who contains MyAnnotation annotation.
-    // <--start
-    String[] methodsContainsAnnotations = null;
-    // --end-->
+    String[] methodsContainsAnnotations = Arrays.stream(theClass.getMethods())
+        .filter(a -> a.getAnnotation(MyAnnotation.class) != null)
+        .map(Method::getName)
+        .sorted()
+        .toArray(String[]::new);
 
     assertArrayEquals(new String[] {"theMethod"}, methodsContainsAnnotations);
   }

@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class DistinctIterable<Character> implements Iterable<Character> {
     private Iterable<Character> iterable;
