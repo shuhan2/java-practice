@@ -1,8 +1,8 @@
 package reflection;
 
-public class Employee {
+public class EmployeeR {
     public String getTitle() {
-        return "Employee";
+        return "EmployeeTitle";
     }
 }
 

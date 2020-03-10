@@ -1,6 +1,5 @@
 package reflection;
 
-import generics.Employee;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -9,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReflectionTest {
   @Test
   void should_be_able_to_get_class_object() {
-    Employee employee = new Employee();
-    Class<? extends Employee> employeeClass = employee.getClass();
+    EmployeeR employee = new EmployeeR();
+    Class<? extends EmployeeR> employeeClass = employee.getClass();
 
     // TODO: please modify the following code to pass the test
     // <--start
-    final Class<? extends Employee> expected = null;
+    final Class<? extends EmployeeR> expected = null;
     // --end-->
 
     assertEquals(expected, employeeClass);
@@ -22,8 +21,8 @@ public class ReflectionTest {
 
   @Test
   void should_be_able_to_get_full_qualified_name() {
-    Employee employee = new Employee();
-    Class<? extends Employee> employeeClass = employee.getClass();
+    EmployeeR employee = new EmployeeR();
+    Class<? extends EmployeeR> employeeClass = employee.getClass();
 
     // TODO: please modify the following code to pass the test
     // <--start
@@ -35,17 +34,16 @@ public class ReflectionTest {
 
   @Test
   void should_be_able_to_instantiate_types_at_runtime() throws Exception {
-    Class<?> theClass = Class.forName("com.cultivation.javaBasic.util.Employee");
+    Class<?> theClass = Class.forName("reflection.EmployeeR");
 
     // TODO: please created an instance described by `theClass`
     // <--start
-    Employee instance = null;
+    EmployeeR instance = null;
     // --end-->
 
-    assertEquals("Employee", instance.getTitle());
+    assertEquals("EmployeeTitle", instance.getTitle());
   }
 
-  @SuppressWarnings({"ConstantConditions", "unused"})
   @Test
   void should_be_able_to_print_all_static_methods_of_double() {
     Class<Double> doubleClass = Double.class;
@@ -67,26 +65,26 @@ public class ReflectionTest {
 
   @Test
   void should_be_able_to_evaluate_object_field_values_at_runtime() {
-    Object employee = new Employee();
+    Object employee = new EmployeeR();
 
-    // TODO: please get the value of `getTitle` method using reflection. No casting to Employee is allowed.
+    // TODO: please get the value of `getTitle` method using reflection. No casting to EmployeeR is allowed.
     // <--start
     Object result = null;
     // --end-->
 
-    assertEquals("Employee", result);
+    assertEquals("EmployeeTitle", result);
   }
 
   @Test
   void should_be_able_to_get_the_item_class_of_the_array() {
-    Object employees = new Employee[0];
+    Object employees = new EmployeeR[0];
 
     // TODO: please get the class of array item `employees`
     // <--start
-    Class<?> itemClass = employees.getClass();
+    Class<?> itemClass = null;
     // --end-->
 
-    assertEquals(Employee.class, itemClass);
+    assertEquals(EmployeeR.class, itemClass);
   }
 
   @Test
