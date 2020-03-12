@@ -1,7 +1,6 @@
 package collection;
 
 import java.util.Iterator;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Sequence implements Iterable<Integer> {
     private final Integer start;
