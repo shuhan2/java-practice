@@ -1,6 +1,5 @@
 package quiz.posMachine;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Objects;
