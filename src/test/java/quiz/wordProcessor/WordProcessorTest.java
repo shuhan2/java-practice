@@ -41,6 +41,15 @@ class WordProcessorTest {
     }
 
     @Test
+    void should_process_multiple_spaces_in_single_line_continued() {
+        String processed = new TextProcessor(30).process("So   many whitespaces");
+        assertEquals(
+            "So(1);   (1);many(1); (1);whitespaces(1);",
+            processed
+        );
+    }
+
+    @Test
     void should_process_multiple_word_in_single_line_continued() {
         String processed = new TextProcessor(10).process("So   many whitespaces");
         assertEquals(
