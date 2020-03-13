@@ -7,18 +7,6 @@ import java.util.Objects;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class PosMachine {
-
-  private static final String separator = "------------------------------------------------------------";
-  private final String line = System.lineSeparator();
-  private final ObjectMapper objectMapper = new ObjectMapper();
-
-  // Note: much blank space in test each line can be output by this way
-  // String productLine = String.format(
-  //                "%-32s%-11s%s",
-  //                " ",
-  //                " ",
-  //                " ");
-
   public void readDataSource(Reader reader) throws IOException {
     // TODO: please implement the following method to pass the test
     // <--start
