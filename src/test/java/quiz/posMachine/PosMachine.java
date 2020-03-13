@@ -51,22 +51,7 @@ public class PosMachine {
                stringBuilder.append(productLine).append(line);
                return countMap.get(product) * product.getPrice();
              }).reduce(0L, Long::sum);
-//    List<Long> collect = Arrays.stream(ids)
-//        .map(id -> {
-//          if (countMap.containsKey(products.get(id))) {
-//            Product product = products.get(id);
-//            String productLine = String.format(
-//                "%-32s%-11s%s",
-//                product.getName(),
-//                product.getPrice().toString(),
-//                countMap.get(product));
-//            stringBuilder.append(productLine).append(line);
-//            long l = product.getPrice() * countMap.get(product);
-//            countMap.remove(product);
-//            return l;
-//          }
-//          return 0L;
-//        }).collect(Collectors.toList());
+
     stringBuilder.append(separator).append(line).append("Price: ").append(sum).append(line);
     return stringBuilder.toString();
   }
