@@ -1,4 +1,4 @@
-package quiz;
+package quiz.posMachine;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
