@@ -50,7 +50,8 @@ public class PosMachine {
                    countMap.get(product));
                stringBuilder.append(productLine).append(line);
                return countMap.get(product) * product.getPrice();
-             }).reduce(0L, Long::sum);
+             })
+        .reduce(0L, Long::sum);
 
     stringBuilder.append(separator).append(line).append("Price: ").append(sum).append(line);
     return stringBuilder.toString();

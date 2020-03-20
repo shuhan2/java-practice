@@ -37,43 +37,39 @@ class TextProcessor {
         .map(c -> new ProcessedCharacter(c, settings.isWhitespace(c)))
         .collect(Collectors.toList());
 
-    BaseProcessor groupProcessor = new GroupProcessor(settings);
-    BaseProcessor lineProcessor = new LineProcessor(settings);
-    processedCharacters.forEach(character -> groupProcessor.handleCharacter(character));
-    processedCharacters = groupProcessor.getCharacters();
-
-    processedCharacters.forEach(character -> lineProcessor.handleCharacter(character));
-    processedCharacters = lineProcessor.getCharacters();
-
-    return convertToString(processedCharacters);
+    return convertToString(processedCharacters(processedCharacters, new GroupProcessor(settings), new LineProcessor(settings)));
   }
 
-  private List<ProcessedCharacter> processedCharacters(List<ProcessedCharacter> characters, BaseProcessor... processors){
-
+  private List<ProcessedCharacter> processedCharacters(List<ProcessedCharacter> characters, BaseProcessor... processors) {
     Arrays.stream(processors).forEach(singleProcessor -> {
-      characters.forEach(character -> singleProcessor.handleCharacter(character));
-
-
+      characters.forEach(singleProcessor::handleCharacter);
     });
 
     return characters;
   }
 
   private String convertToString(List<ProcessedCharacter> processedCharacters) {
-    Map<Integer, List<ProcessedCharacter>> characters = processedCharacters.stream().collect(Collectors.groupingBy(ProcessedCharacter::getGroupId));
+    Map<Integer, List<ProcessedCharacter>> characters = processedCharacters.stream()
+        .collect(Collectors.groupingBy(ProcessedCharacter::getGroupId));
     StringBuilder builder = new StringBuilder();
 
     characters.forEach((key, value) -> {
-      String stringValue = value.stream().map(ProcessedCharacter::getValue)
+
+      String stringValue = value.stream()
+          .map(ProcessedCharacter::getValue)
           .collect(StringBuilder::new, StringBuilder::append,
                    StringBuilder::append).toString();
 
-      String line = value.stream().map(ProcessedCharacter::getLine).distinct().sorted().map(Objects::toString).collect(Collectors.joining(","));
-      builder.append(stringValue).append("(").append(line).append(");");
+      String lineValue = value.stream()
+          .map(ProcessedCharacter::getLine)
+          .distinct()
+          .sorted()
+          .map(Objects::toString)
+          .collect(Collectors.joining(","));
+
+      builder.append(stringValue).append("(").append(lineValue).append(");");
     });
     return builder.toString();
   }
-
-
 }
 
